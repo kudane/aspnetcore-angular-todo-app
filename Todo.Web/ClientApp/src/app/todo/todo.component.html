@@ -1,0 +1,66 @@
+<h1 id="tableLabel">Todo</h1>
+
+<form>
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <input type="text" #inputTitle class="form-control" placeholder="New Item...">
+    </div>
+    <button type="button" class="btn btn-primary col-sm-2" (click)="onAdd(inputTitle.value)">ADD</button>
+  </div>
+</form>
+
+<div class="btn-group" role="group">
+  <button type="button"
+          class="btn"
+          [ngClass]="{'btn-primary': showBy === showType.Active, 'btn-light': showBy !== showType.Active}"
+          [routerLink]="['/todo/active']">
+    Active
+  </button>
+  <button type="button"
+          class="btn btn-primary"
+          [ngClass]="{'btn-primary': showBy === showType.Completed, 'btn-light': showBy !== showType.Completed}"
+          [routerLink]="['/todo/completed']">
+    Complete
+  </button>
+</div>
+
+<ng-container *ngIf="!todos; then pageLoading; else pageSuccess"></ng-container>
+
+<ng-template #pageLoading>
+  <div>
+    <p><em>Loading...</em></p>
+  </div>
+</ng-template>
+
+<ng-template #pageSuccess>
+  <div>
+    <table class='table table-striped' aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th width="50px">Complete</th>
+          <th>Title</th>
+          <th width="100px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let todo of todos">
+          <td>
+            <ng-container *ngIf="showBy === showType.Active; then inputActive; else inputCompleted"></ng-container>
+            <!-- Active -->
+            <ng-template #inputActive>
+              <input type="checkbox" (change)="onMarkAsCompleted(todo.id)">
+            </ng-template>
+            <!-- Completed -->
+            <ng-template #inputCompleted>
+              <input type="checkbox" checked disabled>
+            </ng-template>
+          </td>
+          <td>{{ todo.title }}</td>
+          <td>
+            <button type="button" class="btn btn-link" (click)="onRemove(todo.id)">Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-template>
