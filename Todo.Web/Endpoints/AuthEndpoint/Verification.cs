@@ -13,9 +13,9 @@ namespace Todo.Web.Controllers.TodoEndpoint
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/Auth")]
-    public class Verification : BaseAsyncEndpoint
+    public class Verification : EndpointBaseAsync
         .WithoutRequest
-        .WithResponse<User>
+        .WithActionResult<User>
     {
         private readonly IMediator mediator;
 

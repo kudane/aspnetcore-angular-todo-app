@@ -12,9 +12,9 @@ namespace Todo.Web.Controllers.TodoEndpoint
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/Todo")]
-    public class ClearTodoCompleted : BaseAsyncEndpoint
+    public class ClearTodoCompleted : EndpointBaseAsync
         .WithoutRequest
-        .WithoutResponse
+        .WithoutResult
     {
         private readonly IMediator mediator;
 

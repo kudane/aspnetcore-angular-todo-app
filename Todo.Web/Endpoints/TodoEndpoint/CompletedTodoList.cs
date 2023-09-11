@@ -14,9 +14,9 @@ namespace Todo.Web.Controllers.TodoEndpoint
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/Todo")]
-    public class CompletedTodoList : BaseAsyncEndpoint
+    public class CompletedTodoList : EndpointBaseAsync
         .WithoutRequest
-        .WithResponse<IEnumerable<TodoItem>>
+        .WithActionResult<IEnumerable<TodoItem>>
     {
         private readonly IMediator mediator;
 

@@ -12,9 +12,9 @@ namespace Todo.Web.Controllers.TodoEndpoint
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("/Todo")]
-    public class DeleteTodo : BaseAsyncEndpoint
+    public class DeleteTodo : EndpointBaseAsync
         .WithRequest<DeleteTodoCommand>
-        .WithoutResponse
+        .WithoutResult
     {
         private readonly IMediator mediator;
 

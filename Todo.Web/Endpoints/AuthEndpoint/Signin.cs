@@ -11,9 +11,9 @@ namespace Todo.Web.Controllers.TodoEndpoint
     [AllowAnonymous]
     [ApiController]
     [Route("/Auth")]
-    public class Signin : BaseAsyncEndpoint
+    public class Signin : EndpointBaseAsync
         .WithRequest<SigninCommand>
-        .WithResponse<SigninResponse>
+        .WithActionResult<SigninResponse>
     {
         private readonly IMediator mediator;
 
